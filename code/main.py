@@ -8,12 +8,12 @@ least, one vertex in C.
 
 import os
 import pickle
-from algorithms import randomized_search
-from utils import is_vertex_cover, writeTo_csv, writeTo_xlsx, generate_all,generate_random_graph
+from algorithms import *
+from utils import *
 from charts import charts_main
 
 def program(percentage_k=0.125):
-    vertice_count = range(4, 33) # 4, 33
+    vertice_count = range(4, 257) # 4, 33 / 129
     data_randomized = []
 
     chart_data = {
@@ -28,7 +28,7 @@ def program(percentage_k=0.125):
 
     # Cycle through the number of vertices
     for num_vertices in vertice_count:
-        #print(f'--Vertices: {num_vertices}')
+        print(f'--Vertices: {num_vertices}')
         # Generate the max number of edges
         max_num_edges = int(num_vertices * (num_vertices - 1) / 2)
 
@@ -52,14 +52,13 @@ def program(percentage_k=0.125):
             k = int(percentage_k * num_vertices)
 
             # Solve using Randomized algorithm
-            randomized_cover, num_operations_randomized, execution_time_randomized, num_solutions_tested_randomized = randomized_search(generated_graph, k, 100)
-
+            randomized_cover, num_operations_randomized, execution_time_randomized, num_solutions_tested_randomized = randomized_vertex_cover_fpt_v2_1(generated_graph, k) #100000
 
             # Generate the normal graph
-            #generate_all(generated_graph,generated_graph.nodes(), f'Normal/K_{percentage_k*100}/V({num_vertices})/G({num_vertices},{edges_weight*100}%)')
+            generate_all(generated_graph,generated_graph.nodes(), f'Normal/K_{percentage_k*100}/V({num_vertices})/G({num_vertices},{edges_weight*100}%)')
 
-            # Generate the Las Vegas graph
-            #generate_all(generated_graph, las_vegas_cover, f'randomized/K_{percentage_k*100}/V({num_vertices})/G({num_vertices},{edges_weight*100}%)')
+            # Generate the Randomized graph
+            #generate_all(generated_graph, randomized_cover, f'randomized/K_{percentage_k*100}/V({num_vertices})/G({num_vertices},{edges_weight*100}%)')
 
 
             is_vertex_cover_randomized = is_vertex_cover(generated_graph, randomized_cover)

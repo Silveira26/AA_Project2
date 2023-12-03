@@ -25,7 +25,7 @@ def plot_randomized(metric_folder, metric_name):
         plt.grid(True)
 
         # Save the figure to a file with the title as the name
-        file_name = f"..\\generated_charts\\randomized\\{metric_name} (K={k_value}).png"
+        file_name = f"..\\generated_charts\\fpt_v2_1\\{metric_name} (K={k_value}).png"
         plt.savefig(file_name)
 
         # Show the plot
@@ -39,8 +39,8 @@ def charts_main():
     if(not os.path.exists('..\\generated_charts')):
         os.mkdir('..\\generated_charts')
     
-    if(not os.path.exists('..\\generated_charts\\randomized')):
-        os.mkdir('..\\generated_charts\\randomized')
+    if(not os.path.exists('..\\generated_charts\\fpt_v2_1')):
+        os.mkdir('..\\generated_charts\\fpt_v2_1')
 
     # Plotting for the 'num_operations' metric
     plot_all('num_operations', 'Number of Operations')
