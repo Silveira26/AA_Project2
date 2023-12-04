@@ -52,7 +52,7 @@ def program(percentage_k=0.125):
             k = int(percentage_k * num_vertices)
 
             # Solve using Randomized algorithm
-            randomized_cover, num_operations_randomized, execution_time_randomized, num_solutions_tested_randomized = randomized_vertex_cover_fpt(generated_graph, k) #100000
+            randomized_cover, num_operations_randomized, execution_time_randomized, num_solutions_tested_randomized = randomized_fpt(generated_graph, k) #100000
 
             # Generate the normal graph
             #generate_all(generated_graph,generated_graph.nodes(), f'Normal/K_{percentage_k*100}/V({num_vertices})/G({num_vertices},{edges_weight*100}%)')
