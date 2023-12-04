@@ -13,7 +13,7 @@ from utils import *
 from charts import charts_main
 
 def program(percentage_k=0.125):
-    vertice_count = range(4, 257) # 4, 33 / 129
+    vertice_count = range(4, 257) # 4, 33 / 129 / 257
     data_randomized = []
 
     chart_data = {
@@ -55,7 +55,7 @@ def program(percentage_k=0.125):
             randomized_cover, num_operations_randomized, execution_time_randomized, num_solutions_tested_randomized = randomized_vertex_cover_fpt_v2_1(generated_graph, k) #100000
 
             # Generate the normal graph
-            generate_all(generated_graph,generated_graph.nodes(), f'Normal/K_{percentage_k*100}/V({num_vertices})/G({num_vertices},{edges_weight*100}%)')
+            #generate_all(generated_graph,generated_graph.nodes(), f'Normal/K_{percentage_k*100}/V({num_vertices})/G({num_vertices},{edges_weight*100}%)')
 
             # Generate the Randomized graph
             #generate_all(generated_graph, randomized_cover, f'randomized/K_{percentage_k*100}/V({num_vertices})/G({num_vertices},{edges_weight*100}%)')
@@ -94,15 +94,17 @@ if __name__ == '__main__':
     if not os.path.exists('dump'):
         os.makedirs('dump')
 
-    for k_percentage in [0.125, 0.25, 0.5, 0.75]:
-        print(f'K: {k_percentage*100}%')
-        data_randomized, chart_data = program(k_percentage)
+    for it in range(1,11,1):
+        print(f'Iteration: {it}')
+        for k_percentage in [0.125, 0.25, 0.5, 0.75]:
+            print(f'K: {k_percentage*100}%')
+            data_randomized, chart_data = program(k_percentage)
 
-        writeTo_xlsx(k_percentage,data_randomized, chart_data)
-        writeTo_csv(k_percentage,data_randomized, chart_data)
-    
-    print('Generating charts...')
-    charts_main()
-    print('Done!')
+            writeTo_xlsx(k_percentage,data_randomized, chart_data,it)
+            writeTo_csv(k_percentage,data_randomized, chart_data, it)
+
+        print('Generating charts...')
+        charts_main(it)
+        print('Done Iteration' + str(it))
 
 

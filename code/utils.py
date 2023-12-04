@@ -32,16 +32,16 @@ def generate_all(graph, nodelist, filename, color='#06D6A0'):
     generate_graph_pickle(graph, f'../dump/{filename}.pickle')
 
 
-def writeTo_xlsx(k_percentage, data_randomized, chart_data):
+def writeTo_xlsx(k_percentage, data_randomized, chart_data,iteration):
     # Pre-Check
-    directory = Path('../data/XLSX')
+    directory = Path('../data/XLSX/It'+ str(iteration) + '/')
     directory.mkdir(parents=True, exist_ok=True)
-    if not os.path.isfile('../data/XLSX/randomized.xlsx'):
+    if not os.path.isfile('../data/XLSX/It'+ str(iteration) +'/randomized.xlsx'):
         workbook_randomized = openpyxl.Workbook()
-        workbook_randomized.save('../data/XLSX/randomized.xlsx')
+        workbook_randomized.save('../data/XLSX/It'+ str(iteration) +'/randomized.xlsx')
 
     # Write DataFrame to the Excel files
-    with pd.ExcelWriter('../data/XLSX/randomized.xlsx', mode='a', engine='openpyxl') as writer_randomized:
+    with pd.ExcelWriter('../data/XLSX/It'+ str(iteration) +'/randomized.xlsx', mode='a', engine='openpyxl') as writer_randomized:
         df_randomized = pd.DataFrame(data_randomized, columns=['num_vertices', 'edge_percentage', 'num_edges', 'k_percentage', 'k', 'vertex_cover', 'is_vertex_cover', 'num_operations', 'num_solutions_tested', 'time'])
         df_randomized.to_excel(writer_randomized, sheet_name=f'K_{k_percentage*100}', index=False)
 
@@ -57,24 +57,24 @@ def writeXlsx_results(k_percentage,writer,chart_data,method):
     df_pivot.to_excel(writer, sheet_name=f'K_{k_percentage*100}_{method}', index=False)
         
 
-def writeTo_csv(k_percentage,data_randomized,chart_data):
+def writeTo_csv(k_percentage,data_randomized,chart_data, iteration):
     #Pre- Check
-    directory = Path('../data/CSV/complete/randomized')
+    directory = Path('../data/CSV/complete/randomized/It'+ str(iteration) + '/')
     directory.mkdir(parents=True, exist_ok=True)
 
     # Create DataFrame
     df_randomized = pd.DataFrame(data_randomized, columns=['num_vertices', 'edge_percentage', 'num_edges', 'k_percentage', 'k', 'vertex_cover', 'is_vertex_cover', 'num_operations', 'num_solutions_tested', 'time'])
     
     # Write DataFrame to CSV file
-    df_randomized.to_csv(f'../data/CSV/complete/randomized/K_{k_percentage*100}.csv', index=False)
+    df_randomized.to_csv(f'../data/CSV/complete/randomized/It{iteration}/K_{k_percentage*100}.csv', index=False)
     
-    writeTo_csv_results(k_percentage,chart_data,'num_operations')
-    writeTo_csv_results(k_percentage,chart_data,'num_solutions_tested')
-    writeTo_csv_results(k_percentage,chart_data,'time')
+    writeTo_csv_results(k_percentage,chart_data,'num_operations',iteration)
+    writeTo_csv_results(k_percentage,chart_data,'num_solutions_tested',iteration)
+    writeTo_csv_results(k_percentage,chart_data,'time',iteration)
 
-def writeTo_csv_results(k_percentage,chart_data, method):
+def writeTo_csv_results(k_percentage,chart_data, method, iteration):
     #Pre- Check
-    directory = Path('../data/CSV/results/randomized/'+method+'/')
+    directory = Path('../data/CSV/results/randomized/It'+ str(iteration) + '/'+method+'/')
     directory.mkdir(parents=True, exist_ok=True)
 
     # Create DataFrame
@@ -84,7 +84,7 @@ def writeTo_csv_results(k_percentage,chart_data, method):
     df_pivot_randomized.reset_index(inplace=True)
 
     # Write DataFrame to CSV file
-    df_pivot_randomized.to_csv(f'../data/CSV/results/randomized/{method}/K_{k_percentage*100}.csv', index=False)
+    df_pivot_randomized.to_csv(f'../data/CSV/results/randomized/It{iteration}/{method}/K_{k_percentage*100}.csv', index=False)
 
 
 def is_vertex_cover(graph, cover):
