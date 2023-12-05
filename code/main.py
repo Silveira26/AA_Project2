@@ -28,7 +28,7 @@ def program(percentage_k=0.125):
 
     # Cycle through the number of vertices
     for num_vertices in vertice_count:
-        print(f'--Vertices: {num_vertices}')
+        #print(f'--Vertices: {num_vertices}')
         # Generate the max number of edges
         max_num_edges = int(num_vertices * (num_vertices - 1) / 2)
 
@@ -94,6 +94,7 @@ if __name__ == '__main__':
     if not os.path.exists('dump'):
         os.makedirs('dump')
 
+    print('Running FPT Attempts')
     for it in range(1,11,1):
         print(f'Iteration: {it}')
         start_time = time.time()
@@ -101,11 +102,11 @@ if __name__ == '__main__':
             print(f'K: {k_percentage*100}%')
             data_randomized, chart_data = program(k_percentage)
 
-            writeTo_xlsx(k_percentage,data_randomized, chart_data,it)
-            writeTo_csv(k_percentage,data_randomized, chart_data, it)
+            #writeTo_xlsx(k_percentage,data_randomized, chart_data,it)
+            #writeTo_csv(k_percentage,data_randomized, chart_data, it)
 
         print('Generating charts...')
-        charts_main(it)
+        #charts_main(it)
         print('Done Iteration' + str(it) + ' in ' + str(time.time() - start_time) + ' seconds')
         print('----------------------------------------')
 
