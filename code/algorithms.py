@@ -17,7 +17,8 @@ def randomized_fpt(graph, k):
         if len(remaining_graph.edges()) == 0:
             break
 
-        edge = random.choice(list(remaining_graph.edges()))
+        graph_edges = list(remaining_graph.edges())
+        edge = random.choice(graph_edges)
         num_operations += 1
 
         vertex = random.choice(edge)
