@@ -1,0 +1,9 @@
+\section{Conclusion}
+
+This report has presented the development and evaluation of a randomized algorithm aimed at solving the vertex cover problem. The main algorithm uses a straightforward approach to try out different possible solutions, making sure to try and find a vertex of size k by randomly choosing an edge and its' vertice. Alongside this main method, the report introduced a secondary strategy that introduced stopping conditions and solution "tracking".
+
+Both methods were put to the test with a thorough analysis of how complex they are to run and a series of experiments to see how they perform in action, leading to the "Results" section. The complexity analysis gave us a basic idea of the effort needed by the first algorithm, \(O(k \cdot m)\), while the experiments, shown in Figures 1 to 4, gave us a more detailed look. They showed that as we increase the number of vertices, the number of solutions tested grows in a straightforward, linear way, but the number of operations needed can grow much faster, which is more noticeable when we're looking for larger vertex covers or dealing with graphs that have many connections.
+
+The results from the first trials compared to later ones showed that the main algorithm was consistent in how many solutions it tested. However, the second algorithm made it clear that more complex graphs require a lot more work. For small graphs, the algorithm did its job well, but as the graphs got bigger, it struggled because it needed to do a lot more work.
+
+In the end, this study matches what the project set out to do by giving us useful information on how random algorithms act when facing hard problems like the vertex cover. It also highlights the importance of finding a good balance between exploring enough possible solutions and not using up too much computer power, which is something important to consider for future improvements in this area.

@@ -1,0 +1,42 @@
+\section{Results}
+
+For this section, the results presented demonstrate the total number of solutions, found between the algorithms \(randomized\_fpt\) and \(randomized\_fpt\_attempts\), of graphs ranging from 4 to 32 vertices. To maintain consistent and even results, the table \ref{table:fpt_vs_fptAtt} shows the results
+
+\begin{table}[h]
+\centering
+\small
+\addtolength{\tabcolsep}{-1pt}
+\begin{tabular}{ |l||c|c|c|c|c|c|c|c| } 
+ \hline
+ & \multicolumn{4}{c|}{FPT} & \multicolumn{4}{c|}{FPT Att} \\
+ \hline
+ \diagbox{It}{Edge \%} & 12.5 & 25 & 50 & 75 & 12.5 & 25 & 50 & 75 \\ [0.5ex] 
+ \hline
+ It1 & 1 & 6 & 11 & 11 & 1 & 6 & 27 & 33 \\ 
+ \hline
+  It2 & 1 & 4 & 11 & 16 & 1 & 6 & 28 & 34 \\ 
+ \hline
+  It3 & 1 & 4 & 7 & 12 & 1 & 6 & 31 & 31 \\ 
+ \hline
+  It4 & 1 & 4 & 7 & 12 & 1 & 6 & 27 & 34 \\ 
+ \hline
+  It5 & 1 & 5 & 16 & 11 & 1 & 6 & 29 & 33 \\ 
+ \hline
+  It6 & 1 & 5 & 5 & 16 & 1 & 6 & 26 & 35 \\ 
+ \hline
+  It7 & 1 & 3 & 6 & 12 & 1 & 6 & 27 & 30 \\ 
+ \hline
+  It8 & 1 & 5 & 8 & 16 & 1 & 6 & 29 & 36 \\ 
+ \hline
+  It9 & 1 & 3 & 8 & 12 & 1 & 6 & 26 & 38 \\ 
+ \hline
+  It10 & 1 & 5 & 8 & 18 & 1 & 6 & 24 & 34 \\ 
+ \hline
+\end{tabular}
+\caption{Solutions found across the different algorithms and the iterations.}
+\label{table:fpt_vs_fptAtt}
+\end{table}
+
+During the analysis of the results, we found that for graphs with more edge percentage, although the \(randomized\_fpt\_attempts\) algorithm performed more poorly in terms of time, it actually found the double, or more, of solutions for the same percentage of edges.
+
+
