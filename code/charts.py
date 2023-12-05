@@ -8,7 +8,7 @@ def plot_randomized(metric_folder, metric_name, iteration):
         for file in files:
             extracted_files.append(os.path.join(root, file))
 
-    randomized_files = [f for f in extracted_files if f"randomized\\It{iteration}\\{metric_folder}\\" in f]
+    randomized_files = [f for f in extracted_files if f"ftp_attempts\\It{iteration}\\{metric_folder}\\" in f]
 
     # Creating plots for each K value
     for k_value in ['12.5', '25.0', '50.0', '75.0']:
@@ -25,7 +25,7 @@ def plot_randomized(metric_folder, metric_name, iteration):
         plt.grid(True)
 
         # Save the figure to a file with the title as the name
-        file_name = f"..\\generated_charts\\ftp_v2_1\\It{iteration}\\{metric_name} (K={k_value}).png"
+        file_name = f"..\\generated_charts\\ftp_attempts\\It{iteration}\\{metric_name} (K={k_value}).png"
         plt.savefig(file_name)
 
         # Show the plot
@@ -36,11 +36,11 @@ def charts_main(iteration):
     if(not os.path.exists('..\\generated_charts')):
         os.mkdir('..\\generated_charts')
 
-    if(not os.path.exists('..\\generated_charts\\ftp_v2_1')):
-        os.mkdir('..\\generated_charts\\ftp_v2_1')
+    if(not os.path.exists('..\\generated_charts\\ftp_attempts')):
+        os.mkdir('..\\generated_charts\\ftp_attempts')
     
-    if(not os.path.exists('..\\generated_charts\\ftp_v2_1\\It'+str(iteration))):
-        os.mkdir('..\\generated_charts\\ftp_v2_1\\It'+str(iteration))
+    if(not os.path.exists('..\\generated_charts\\ftp_attempts\\It'+str(iteration))):
+        os.mkdir('..\\generated_charts\\ftp_attempts\\It'+str(iteration))
 
     # Plotting for the 'num_operations' metric
     plot_randomized('num_operations', 'Number of Operations', iteration)

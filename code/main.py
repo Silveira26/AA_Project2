@@ -13,7 +13,7 @@ from utils import *
 from charts import charts_main
 
 def program(percentage_k=0.125):
-    vertice_count = range(4, 257) # 4, 33 / 129 / 257
+    vertice_count = range(4, 33) # 4, 33 / 129 / 257
     data_randomized = []
 
     chart_data = {
@@ -52,7 +52,7 @@ def program(percentage_k=0.125):
             k = int(percentage_k * num_vertices)
 
             # Solve using Randomized algorithm
-            randomized_cover, num_operations_randomized, execution_time_randomized, num_solutions_tested_randomized = randomized_fpt(generated_graph, k) #100000
+            randomized_cover, num_operations_randomized, execution_time_randomized, num_solutions_tested_randomized = randomized_fpt_attempts(generated_graph, k) #100000
 
             # Generate the normal graph
             #generate_all(generated_graph,generated_graph.nodes(), f'Normal/K_{percentage_k*100}/V({num_vertices})/G({num_vertices},{edges_weight*100}%)')
@@ -96,6 +96,7 @@ if __name__ == '__main__':
 
     for it in range(1,11,1):
         print(f'Iteration: {it}')
+        start_time = time.time()
         for k_percentage in [0.125, 0.25, 0.5, 0.75]:
             print(f'K: {k_percentage*100}%')
             data_randomized, chart_data = program(k_percentage)
@@ -105,6 +106,7 @@ if __name__ == '__main__':
 
         print('Generating charts...')
         charts_main(it)
-        print('Done Iteration' + str(it))
+        print('Done Iteration' + str(it) + ' in ' + str(time.time() - start_time) + ' seconds')
+        print('----------------------------------------')
 
 
